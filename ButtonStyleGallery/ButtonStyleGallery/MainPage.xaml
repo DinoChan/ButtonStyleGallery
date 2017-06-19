@@ -7,22 +7,33 @@
       mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel>
+            <StackPanel x:Name="ControlPanel">
+                <ComboBox Header="VisualState"
+                          Margin="10" SelectionChanged="OnVisualStateSelectionChanged">
+                    <ComboBoxItem Content="Normal" />
+                    <ComboBoxItem Content="PointerOver" />
+                    <ComboBoxItem Content="Pressed" />
+                    <ComboBoxItem Content="Disabled" />
+                </ComboBox>
+            </StackPanel>
+            <VariableSizedWrapGrid HorizontalChildrenAlignment="Center"
+                                   VerticalChildrenAlignment="Center"
+                                   ItemHeight="50"
+                                   ItemWidth="100"
+                                   RelativePanel.AlignLeftWith="ControlPanel"
+                                   RelativePanel.AlignRightWithPanel="True"
+                                   x:Name="ButtonsPanel">
+                <Button Content="Edit Profile"
+                        Background="Transparent"
+                        BorderThickness="0" />
+            </VariableSizedWrapGrid>
+        </RelativePanel>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ToggleSwitch Header="IsEnbaled"
-                      IsOn="{x:Bind ContentControl.IsEnabled,Mode=TwoWay}" />
-        <ContentControl Grid.Row="1"
-                        x:Name="ContentControl"
-                        Margin="20">
-            <StackPanel>
-                <Button Content="Edit Profile"
-                        Background="Transparent"
-                        BorderThickness="0" />
-                <Button Content="Edit Profile"
-                        Margin="0,10,0,0" />
-            </StackPanel>
-        </ContentControl>
+
+
     </Grid>
 </Page>
