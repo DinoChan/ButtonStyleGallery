@@ -1,13 +1,28 @@
-﻿<Page
-    x:Class="ButtonStyleGallery.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ButtonStyleGallery"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="ButtonStyleGallery.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:ButtonStyleGallery"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ToggleSwitch Header="IsEnbaled"
+                      IsOn="{x:Bind ContentControl.IsEnabled,Mode=TwoWay}" />
+        <ContentControl Grid.Row="1"
+                        x:Name="ContentControl"
+                        Margin="20">
+            <StackPanel>
+                <Button Content="Edit Profile"
+                        Background="Transparent"
+                        BorderThickness="0" />
+                <Button Content="Edit Profile"
+                        Margin="0,10,0,0" />
+            </StackPanel>
+        </ContentControl>
     </Grid>
 </Page>
