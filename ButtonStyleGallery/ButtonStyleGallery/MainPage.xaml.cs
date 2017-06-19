@@ -25,6 +25,7 @@ namespace ButtonStyleGallery
         public MainPage()
         {
             this.InitializeComponent();
+            
         }
     }
 }
