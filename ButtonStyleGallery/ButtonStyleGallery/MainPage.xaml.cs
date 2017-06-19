@@ -30,5 +30,10 @@ namespace ButtonStyleGallery
             foreach (var item in ButtonsPanel.Children.OfType<Control>())
                 VisualStateManager.GoToState(item, selectedItem.Content as string, true);
         }
+
+        private void ssss(object sender, RoutedEventArgs e)
+        {
+            (sender as SimpleButton).Content = "ssssss";
+        }
     }
 }

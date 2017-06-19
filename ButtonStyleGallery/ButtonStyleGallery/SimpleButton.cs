@@ -1,6 +1,8 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 
 // The Templated Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234235
 
@@ -77,7 +79,6 @@ namespace ButtonStyleGallery
         protected override void OnPointerReleased(PointerRoutedEventArgs e)
         {
             base.OnPointerReleased(e);
-
             if (e.Handled)
                 return;
 
@@ -85,10 +86,34 @@ namespace ButtonStyleGallery
                 return;
 
             e.Handled = true;
-            Click?.Invoke(this, new RoutedEventArgs());
+            if (IsPressed)
+                Click?.Invoke(this, new RoutedEventArgs());
+
             IsPressed = false;
             ReleasePointerCapture(e.Pointer);
             _isPointerCaptured = false;
+            UpdateVisualState();
+        }
+
+
+
+        protected override void OnPointerMoved(PointerRoutedEventArgs e)
+        {
+            base.OnPointerMoved(e);
+            if (_isPointerCaptured == false)
+                return;
+
+            var position = e.GetCurrentPoint(this).Position;
+            if (position.X < 0 || position.Y < 0 || position.X > this.ActualWidth || position.Y > this.ActualHeight)
+            {
+                IsPressed = false;
+            }
+            else
+            {
+                IsPressed = true;
+            }
+
+            UpdateVisualState();
         }
 
 

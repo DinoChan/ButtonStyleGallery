@@ -9,9 +9,9 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel>
             <StackPanel x:Name="ControlPanel">
-                <ComboBox Header="VisualState"
+                <ComboBox Header="VisualState" Width="200"
                           Margin="10" SelectionChanged="OnVisualStateSelectionChanged">
-                    <ComboBoxItem Content="Normal" />
+                    <ComboBoxItem Content="Normal" IsSelected="True"/>
                     <ComboBoxItem Content="PointerOver" />
                     <ComboBoxItem Content="Pressed" />
                     <ComboBoxItem Content="Disabled" />
@@ -21,18 +21,15 @@
                                    VerticalChildrenAlignment="Center"
                                    ItemHeight="50"
                                    ItemWidth="100"
-                                   RelativePanel.AlignLeftWith="ControlPanel"
-                                   RelativePanel.AlignRightWithPanel="True"
+                                   RelativePanel.RightOf="ControlPanel"
                                    x:Name="ButtonsPanel">
                 <Button Content="Edit Profile"
                         Background="Transparent"
                         BorderThickness="0" />
+                <local:SimpleButton Content="Edit Profile" Click="ssss"/>
             </VariableSizedWrapGrid>
         </RelativePanel>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+      
 
 
     </Grid>
