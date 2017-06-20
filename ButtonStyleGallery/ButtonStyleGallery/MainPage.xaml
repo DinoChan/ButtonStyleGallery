@@ -4,6 +4,7 @@
       xmlns:local="using:ButtonStyleGallery"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -27,6 +28,16 @@
                         Background="Transparent"
                         BorderThickness="0" />
                 <local:SimpleButton Content="Edit Profile" Click="ssss"/>
+                <Button 
+                       >
+                   
+                    <TextBlock Text="Edit Profile"
+                               Foreground="White">
+                                <Interactivity:Interaction.Behaviors>
+                                    <local:PointerLightBehavior />
+                                </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </Button>
             </VariableSizedWrapGrid>
         </RelativePanel>
       

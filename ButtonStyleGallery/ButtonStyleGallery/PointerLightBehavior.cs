@@ -8,7 +8,7 @@ using Microsoft.Xaml.Interactivity;
 
 namespace ButtonStyleGallery
 {
-    public class PointerLightBehavior : Behavior<Control>
+    public class PointerLightBehavior : Behavior<TextBlock>
     {
         private PointLight _pointLight;
 
@@ -27,19 +27,19 @@ namespace ButtonStyleGallery
             _pointLight.CoordinateSpace = text;
             _pointLight.Targets.Add(text);
 
-            _pointLight.Offset = new Vector3(-(float) AssociatedObject.ActualWidth, (float) AssociatedObject.ActualHeight / 2, (float) AssociatedObject.FontSize);
+            _pointLight.Offset = new Vector3(-(float) 1000, (float) AssociatedObject.ActualHeight / 2, (float) AssociatedObject.FontSize);
         }
 
         private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
         {
             var position = e.GetCurrentPoint(AssociatedObject);
             //starts out to the left; vertically centered; light's z-offset is related to fontsize
-            _pointLight.Offset = new Vector3((float) position.Position.X, (float) position.Position.Y, (float) AssociatedObject.FontSize / 2);
+            _pointLight.Offset = new Vector3((float) position.Position.X, (float) position.Position.Y, (float) (AssociatedObject.FontSize / 1.5));
         }
 
         private void OnPointerExited(object sender, PointerRoutedEventArgs e)
         {
-            _pointLight.Offset = new Vector3(-(float) AssociatedObject.ActualWidth, (float) AssociatedObject.ActualHeight / 2, (float) AssociatedObject.FontSize);
+            _pointLight.Offset = new Vector3(-(float) AssociatedObject.ActualWidth*5, (float) AssociatedObject.ActualHeight / 2, (float) AssociatedObject.FontSize);
         }
 
         protected override void OnDetaching()
