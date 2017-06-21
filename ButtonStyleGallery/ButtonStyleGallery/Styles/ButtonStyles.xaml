@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:ButtonStyleGallery"
                     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity">
-    <Style x:Key="ButtonStyle1"
+    <Style x:Key="PointLightButtonStyle"
            TargetType="Button">
         <Setter Property="Background"
                 Value="{ThemeResource ButtonBackground}" />
@@ -28,7 +28,13 @@
                 Value="True" />
         <Setter Property="FocusVisualMargin"
                 Value="-3" />
-        
+        <Setter Property="Interactivity:Interaction.Behaviors">
+            <Setter.Value>
+                <Interactivity:BehaviorCollection>
+                    <local:PointerLightBehavior />
+                </Interactivity:BehaviorCollection>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -53,12 +59,12 @@
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource ButtonBorderBrushPointerOver}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                        Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource ButtonForegroundPointerOver}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <!--<PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />-->
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
@@ -73,12 +79,12 @@
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource ButtonBorderBrushPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                        Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource ButtonForegroundPressed}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <!--<PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />-->
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
@@ -111,11 +117,8 @@
                                           Content="{TemplateBinding Content}"
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           Padding="{TemplateBinding Padding}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <Interactivity:Interaction.Behaviors>
-                                <local:PointerLightBehavior />
-                            </Interactivity:Interaction.Behaviors>
-                        </ContentPresenter>
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

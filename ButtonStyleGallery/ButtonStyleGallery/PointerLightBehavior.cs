@@ -7,13 +7,15 @@ using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
 using Microsoft.Toolkit.Uwp.UI;
 using Microsoft.Xaml.Interactivity;
+using System.Diagnostics;
 
 namespace ButtonStyleGallery
 {
     public class PointerLightBehavior : Behavior<ContentControl>
     {
         private PointLight _pointLight;
-
+        private float _fontSize;
+        private UIElement _text;
 
         /// <summary>
         /// 获取或设置Color的值
@@ -52,22 +54,39 @@ namespace ButtonStyleGallery
             AssociatedObject.PointerExited += OnPointerExited;
 
             var text = AssociatedObject.FindDescendant<TextBlock>();
-            var visual = ElementCompositionPreview.GetElementVisual((UIElement) text ?? AssociatedObject);
-            var compositor = visual.Compositor;
+            if (text == null)
+                AssociatedObject.Loaded += OnAssociatedObjectedLoaded;
+            else
+                CreatePointLight();
+        }
 
+        private void CreatePointLight()
+        {
+            var text = AssociatedObject.FindDescendant<TextBlock>();
+            _text = (UIElement)text ?? AssociatedObject;
+            var visual = ElementCompositionPreview.GetElementVisual(_text);
+            var compositor = visual.Compositor;
+            _fontSize = (float)(AssociatedObject.FontSize/0.7);
             _pointLight = compositor.CreatePointLight();
             _pointLight.Color = Color;
             _pointLight.CoordinateSpace = visual;
             _pointLight.Targets.Add(visual);
 
-            _pointLight.Offset = new Vector3(-1000, (float) AssociatedObject.ActualHeight / 2, (float) AssociatedObject.FontSize);
+            _pointLight.Offset = new Vector3(-1000, (float)AssociatedObject.ActualHeight / 2, _fontSize);
+        }
+
+        private void OnAssociatedObjectedLoaded(object sender, RoutedEventArgs e)
+        {
+            AssociatedObject.Loaded -= OnAssociatedObjectedLoaded;
+            CreatePointLight();
         }
 
         private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            var position = e.GetCurrentPoint(AssociatedObject);
+            var position = e.GetCurrentPoint(_text);
             //starts out to the left; vertically centered; light's z-offset is related to fontsize
-            _pointLight.Offset = new Vector3((float) position.Position.X, (float) position.Position.Y, (float) (AssociatedObject.FontSize / 1.5));
+            _pointLight.Offset = new Vector3((float) position.Position.X, (float) position.Position.Y, _fontSize);
+            Debug.WriteLine(position.Position.X + "---" + position.Position.Y +"---" + _fontSize);
         }
 
         private void OnPointerExited(object sender, PointerRoutedEventArgs e)
@@ -80,6 +99,7 @@ namespace ButtonStyleGallery
             base.OnDetaching();
             AssociatedObject.PointerMoved -= OnPointerMoved;
             AssociatedObject.PointerExited -= OnPointerExited;
+            AssociatedObject.Loaded -= OnAssociatedObjectedLoaded;
         }
     }
 }

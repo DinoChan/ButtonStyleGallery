@@ -32,11 +32,8 @@
                         BorderThickness="0" />
                 <local:SimpleButton Content="Edit Profile" />
                 <Button Content="Edit Profile"
-                        Foreground="White">
-                    <Interactivity:Interaction.Behaviors>
-                        <local:PointerLightBehavior />
-                    </Interactivity:Interaction.Behaviors>
-                </Button>
+                        Style="{StaticResource PointLightButtonStyle}" />
+
             </VariableSizedWrapGrid>
         </RelativePanel>
 
