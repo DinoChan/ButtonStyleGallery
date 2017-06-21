@@ -31,9 +31,6 @@ namespace ButtonStyleGallery
                 VisualStateManager.GoToState(item, selectedItem.Content as string, true);
         }
 
-        private void ssss(object sender, RoutedEventArgs e)
-        {
-            (sender as SimpleButton).Content = "ssssss";
-        }
+      
     }
 }

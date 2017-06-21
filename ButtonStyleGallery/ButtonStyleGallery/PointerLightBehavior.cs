@@ -1,16 +1,49 @@
 ﻿using System.Numerics;
 using Windows.UI;
 using Windows.UI.Composition;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
+using Microsoft.Toolkit.Uwp.UI;
 using Microsoft.Xaml.Interactivity;
 
 namespace ButtonStyleGallery
 {
-    public class PointerLightBehavior : Behavior<TextBlock>
+    public class PointerLightBehavior : Behavior<ContentControl>
     {
         private PointLight _pointLight;
+
+
+        /// <summary>
+        /// 获取或设置Color的值
+        /// </summary>  
+        public Color Color
+        {
+            get { return (Color)GetValue(ColorProperty); }
+            set { SetValue(ColorProperty, value); }
+        }
+
+        /// <summary>
+        /// 标识 Color 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty ColorProperty =
+            DependencyProperty.Register("Color", typeof(Color), typeof(PointerLightBehavior), new PropertyMetadata(Colors.White, OnColorChanged));
+
+        private static void OnColorChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            PointerLightBehavior target = obj as PointerLightBehavior;
+            Color oldValue = (Color)args.OldValue;
+            Color newValue = (Color)args.NewValue;
+            if (oldValue != newValue)
+                target.OnColorChanged(oldValue, newValue);
+        }
+
+        protected virtual void OnColorChanged(Color oldValue, Color newValue)
+        {
+            if (_pointLight != null)
+                _pointLight.Color = Color;
+        }
 
         protected override void OnAttached()
         {
@@ -18,16 +51,16 @@ namespace ButtonStyleGallery
             AssociatedObject.PointerMoved += OnPointerMoved;
             AssociatedObject.PointerExited += OnPointerExited;
 
-            var compositor = ElementCompositionPreview.GetElementVisual(AssociatedObject).Compositor;
-
-            var text = ElementCompositionPreview.GetElementVisual(AssociatedObject);
+            var text = AssociatedObject.FindDescendant<TextBlock>();
+            var visual = ElementCompositionPreview.GetElementVisual((UIElement) text ?? AssociatedObject);
+            var compositor = visual.Compositor;
 
             _pointLight = compositor.CreatePointLight();
-            _pointLight.Color = Colors.White;
-            _pointLight.CoordinateSpace = text;
-            _pointLight.Targets.Add(text);
+            _pointLight.Color = Color;
+            _pointLight.CoordinateSpace = visual;
+            _pointLight.Targets.Add(visual);
 
-            _pointLight.Offset = new Vector3(-(float) 1000, (float) AssociatedObject.ActualHeight / 2, (float) AssociatedObject.FontSize);
+            _pointLight.Offset = new Vector3(-1000, (float) AssociatedObject.ActualHeight / 2, (float) AssociatedObject.FontSize);
         }
 
         private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
@@ -39,7 +72,7 @@ namespace ButtonStyleGallery
 
         private void OnPointerExited(object sender, PointerRoutedEventArgs e)
         {
-            _pointLight.Offset = new Vector3(-(float) AssociatedObject.ActualWidth*5, (float) AssociatedObject.ActualHeight / 2, (float) AssociatedObject.FontSize);
+            _pointLight.Offset = new Vector3(-(float) AssociatedObject.ActualWidth * 5, (float) AssociatedObject.ActualHeight / 2, (float) AssociatedObject.FontSize);
         }
 
         protected override void OnDetaching()

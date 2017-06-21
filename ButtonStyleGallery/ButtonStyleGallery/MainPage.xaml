@@ -10,9 +10,12 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel>
             <StackPanel x:Name="ControlPanel">
-                <ComboBox Header="VisualState" Width="200"
-                          Margin="10" SelectionChanged="OnVisualStateSelectionChanged">
-                    <ComboBoxItem Content="Normal" IsSelected="True"/>
+                <ComboBox Header="VisualState"
+                          Width="200"
+                          Margin="10"
+                          SelectionChanged="OnVisualStateSelectionChanged">
+                    <ComboBoxItem Content="Normal"
+                                  IsSelected="True" />
                     <ComboBoxItem Content="PointerOver" />
                     <ComboBoxItem Content="Pressed" />
                     <ComboBoxItem Content="Disabled" />
@@ -27,20 +30,16 @@
                 <Button Content="Edit Profile"
                         Background="Transparent"
                         BorderThickness="0" />
-                <local:SimpleButton Content="Edit Profile" Click="ssss"/>
-                <Button 
-                       >
-                   
-                    <TextBlock Text="Edit Profile"
-                               Foreground="White">
-                                <Interactivity:Interaction.Behaviors>
-                                    <local:PointerLightBehavior />
-                                </Interactivity:Interaction.Behaviors>
-                    </TextBlock>
+                <local:SimpleButton Content="Edit Profile" />
+                <Button Content="Edit Profile"
+                        Foreground="White">
+                    <Interactivity:Interaction.Behaviors>
+                        <local:PointerLightBehavior />
+                    </Interactivity:Interaction.Behaviors>
                 </Button>
             </VariableSizedWrapGrid>
         </RelativePanel>
-      
+
 
 
     </Grid>
