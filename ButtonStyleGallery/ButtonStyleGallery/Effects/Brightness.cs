@@ -10,7 +10,7 @@ using Microsoft.Toolkit.Uwp.UI.Animations.Effects;
 
 namespace ButtonStyleGallery.Effects
 {
-   
+
 
     public class Brightness : AnimationEffect
     {
@@ -39,17 +39,16 @@ namespace ButtonStyleGallery.Effects
         /// </returns>
         public override string[] ApplyEffect()
         {
-            var saturationEffect = new SaturationEffect
+            var brightnessEffect = new BrightnessEffect
             {
-                Saturation = 1f,
                 Name = EffectName,
                 Source = new CompositionEffectSourceParameter("source")
             };
 
-            var propertyToChange = $"{EffectName}.Brightness";
+            var propertyToChange = $"{EffectName}.WhitePoint";
             var propertiesToAnimate = new[] { propertyToChange };
 
-            EffectBrush = Compositor.CreateEffectFactory(saturationEffect, propertiesToAnimate).CreateBrush();
+            EffectBrush = Compositor.CreateEffectFactory(brightnessEffect, propertiesToAnimate).CreateBrush();
             EffectBrush.SetSourceParameter("source", Compositor.CreateBackdropBrush());
 
             return propertiesToAnimate;

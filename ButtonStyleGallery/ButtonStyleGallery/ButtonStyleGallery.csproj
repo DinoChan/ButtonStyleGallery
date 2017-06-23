@@ -93,6 +93,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Effects\Brightness.cs" />
+    <Compile Include="Effects\BrightnessAnimationExtensions.cs" />
+    <Compile Include="Effects\BrightnessBehavior.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

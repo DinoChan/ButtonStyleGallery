@@ -33,7 +33,14 @@
                 <local:SimpleButton Content="Edit Profile" />
                 <Button Content="Edit Profile"
                         Style="{StaticResource PointLightButtonStyle}" />
-
+                <Slider x:Name="sl"
+                        Maximum="1"
+                        Minimum="-1" />
+                <Button Content="ssss">
+                    <Interactivity:Interaction.Behaviors>
+                        <local:BrightnessBehavior Value="{Binding ElementName=sl,Mode=TwoWay,Path=Value}"/>
+                    </Interactivity:Interaction.Behaviors>
+                </Button>
             </VariableSizedWrapGrid>
         </RelativePanel>
 
