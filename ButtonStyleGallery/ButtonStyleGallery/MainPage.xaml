@@ -5,7 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:behavior="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       mc:Ignorable="d">
+    <Page.Resources>
+    
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel>
@@ -21,27 +26,50 @@
                     <ComboBoxItem Content="Disabled" />
                 </ComboBox>
             </StackPanel>
-            <VariableSizedWrapGrid HorizontalChildrenAlignment="Center"
-                                   VerticalChildrenAlignment="Center"
-                                   ItemHeight="50"
-                                   ItemWidth="100"
-                                   RelativePanel.RightOf="ControlPanel"
-                                   x:Name="ButtonsPanel">
+            <controls:AdaptiveGridView DesiredWidth="200"
+                                       ItemHeight="50"
+                                       IsItemClickEnabled="False"
+                                       SelectionMode="None"
+                                       RelativePanel.RightOf="ControlPanel"
+                                       x:Name="ButtonsPanel">
                 <Button Content="Edit Profile"
                         Background="Transparent"
                         BorderThickness="0" />
-                <local:SimpleButton Content="Edit Profile" />
+
                 <Button Content="Edit Profile"
-                        Style="{StaticResource PointLightButtonStyle}" />
+                        Style="{StaticResource ShadowButtonStyle}" />
+                <Button Content="Edit Profile"
+                        Style="{StaticResource TransparentButtonStyle}" />
+                <Button Content="Edit Profile"
+                        Style="{StaticResource TransparentButtonStyle2}" />
+                <Button Content="Edit Profile"
+                        Style="{StaticResource PointLightButtonStyle}" BorderThickness="0" Background="Transparent"/>
+
                 <Slider x:Name="sl"
-                        Maximum="1"
-                        Minimum="-1" />
-                <Button Content="ssss">
+                        Maximum="2"
+                        StepFrequency="0.001"
+                        Minimum="0" />
+                <Button Content="ssss"
+                        Background="Green"
+                        Foreground="Red">
                     <Interactivity:Interaction.Behaviors>
-                        <local:BrightnessBehavior Value="{Binding ElementName=sl,Mode=TwoWay,Path=Value}"/>
+                        <behavior:Saturation  Value="{Binding ElementName=sl,Path=Value,Mode=TwoWay}" />
                     </Interactivity:Interaction.Behaviors>
                 </Button>
-            </VariableSizedWrapGrid>
+                <local:SimpleButton Content="Simple Button" />
+            </controls:AdaptiveGridView>
+            <!--<VariableSizedWrapGrid 
+                                   ItemHeight="300"
+                                   ItemWidth="300">
+                <Rectangle Fill="Red" />
+                <Rectangle Fill="Blue"
+                           VariableSizedWrapGrid.RowSpan="2" />
+                <Rectangle Fill="Green"
+                           VariableSizedWrapGrid.ColumnSpan="2" />
+                <Rectangle Fill="Yellow"
+                           VariableSizedWrapGrid.RowSpan="2"
+                           VariableSizedWrapGrid.ColumnSpan="2" />
+            </VariableSizedWrapGrid>-->
         </RelativePanel>
 
 

@@ -63,7 +63,7 @@ namespace ButtonStyleGallery
                 Source = new CompositionEffectSourceParameter("source")
             };
             
-            var effectFactory = compositor.CreateEffectFactory(brightnessEffect, new[] { "BrightnessEffect.WhitePoint"});
+            var effectFactory = compositor.CreateEffectFactory(brightnessEffect, new[] { "BrightnessEffect.WhitePoint" });
             _brush = effectFactory.CreateBrush();
 
             _brush.SetSourceParameter("source", compositor.CreateBackdropBrush());

@@ -27,8 +27,9 @@ namespace ButtonStyleGallery
             if (selectedItem == null)
                 return;
 
-            foreach (var item in ButtonsPanel.Children.OfType<Control>())
+            foreach (var item in ButtonsPanel.Items.OfType<Control>())
                 VisualStateManager.GoToState(item, selectedItem.Content as string, true);
+           
         }
 
       
