@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:ButtonStyleGallery"
                     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
-                    xmlns:Controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
+                    xmlns:Controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+                    xmlns:behavior="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors">
 
     <Style x:Key="PointLightButtonStyle"
            TargetType="Button">
@@ -285,7 +286,7 @@
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
                                         <Setter Target="ContentPresenter.(UIElement.Opacity)"
-                                                Value="0.75" />
+                                                Value="0.65" />
                                     </VisualState.Setters>
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
@@ -318,7 +319,7 @@
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           Padding="{TemplateBinding Padding}"
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Opacity="0.8" />
+                                          Opacity="0.7" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -413,32 +414,34 @@
                     <Grid x:Name="RootGrid"
                           Background="{TemplateBinding Background}">
                         <Grid.Resources>
-                            <local:SolidColorBrushBridge x:Name="SolidColorBrushBridge"
-                                                         Value="0" />
+                            <local:SolidColorBrushBridge x:Name="solidColorBrushBridge"
+                                                         x:Key="SolidColorBrushBridge"
+                                                         Value="0"
+                                                         InputBrush="{TemplateBinding Foreground}" />
                         </Grid.Resources>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
-                                    <Storyboard>
-                                        <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
-                                    </Storyboard>
+
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
-                                    <VisualState.Setters>
-
-                                    </VisualState.Setters>
                                     <Storyboard>
-
-
+                                        <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                                                       Storyboard.TargetProperty="(SolidColorBrushBridge.Value)"
+                                                                       Storyboard.TargetName="solidColorBrushBridge">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
-                                    <VisualState.Setters>
-
-                                    </VisualState.Setters>
                                     <Storyboard>
-
-
+                                        <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                                                       Storyboard.TargetProperty="(SolidColorBrushBridge.Value)"
+                                                                       Storyboard.TargetName="solidColorBrushBridge">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0.8" />
+                                        </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
@@ -463,7 +466,143 @@
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           Padding="{TemplateBinding Padding}"
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Foreground="{Binding Source={StaticResource SolidColorBrushBridge},Path=OutputBrush}" />
+                                          Foreground="{Binding Source={StaticResource  SolidColorBrushBridge},Path=OutputBrush}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="Button"
+           x:Key="TransparentButtonStyle4"
+           BasedOn="{StaticResource TransparentButtonStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="RootGrid"
+                          Background="{TemplateBinding Background}">
+                        <Grid.Resources>
+                            <local:SolidColorBrushBridge x:Name="solidColorBrushBridge"
+                                                         x:Key="SolidColorBrushBridge"
+                                                         Saturation="0"
+                                                         InputBrush="{TemplateBinding Foreground}" />
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                                                       Storyboard.TargetProperty="(SolidColorBrushBridge.Saturation)"
+                                                                       Storyboard.TargetName="solidColorBrushBridge">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                                                       Storyboard.TargetProperty="(SolidColorBrushBridge.Saturation)"
+                                                                       Storyboard.TargetName="solidColorBrushBridge">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0.8" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                       Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource ButtonForegroundDisabled}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          AutomationProperties.AccessibilityView="Raw"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Padding="{TemplateBinding Padding}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Foreground="{Binding Source={StaticResource  SolidColorBrushBridge},Path=OutputBrush}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="Button"
+           x:Key="SaturationButtonStyle"
+           BasedOn="{StaticResource TransparentButtonStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="RootGrid"
+                          Background="{TemplateBinding Background}">
+                        <Interactivity:Interaction.Behaviors>
+                            <Interactivity:BehaviorCollection>
+                                <behavior:Saturation  Value="0" Duration="0" Delay="0"
+                                                      x:Name="Saturation"/>
+                            </Interactivity:BehaviorCollection>
+                        </Interactivity:Interaction.Behaviors>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                                                       Storyboard.TargetProperty="(Saturation.Value)"
+                                                                       Storyboard.TargetName="Saturation">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                                                       Storyboard.TargetProperty="(Saturation.Value)"
+                                                                       Storyboard.TargetName="Saturation">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0"
+                                                                  Value="0.7" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                       Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource ButtonForegroundDisabled}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          AutomationProperties.AccessibilityView="Raw"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Padding="{TemplateBinding Padding}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
