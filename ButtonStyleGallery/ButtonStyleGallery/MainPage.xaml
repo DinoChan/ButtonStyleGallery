@@ -43,6 +43,8 @@
                 <Button Content="Edit Profile"
                         Style="{StaticResource TransparentButtonStyle2}" />
                 <Button Content="Edit Profile"
+                        Style="{StaticResource TransparentButtonStyle3}" />
+                <Button Content="Edit Profile"
                         Style="{StaticResource PointLightButtonStyle}" BorderThickness="0" Background="Transparent"/>
 
                 <Slider x:Name="sl"
