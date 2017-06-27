@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="ButtonStyleGallery.GhostButtonBlurView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ButtonStyleGallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:behavior="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+             d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Grid>
+            <Interactivity:Interaction.Behaviors>
+                <behavior:Blur Duration="1000" Value="0" x:Name="Blur"/>
+            </Interactivity:Interaction.Behaviors>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup/>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+        <Button>
+            <Interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="PointerEntered" >
+                    <core:EventTriggerBehavior.Actions>
+                        <core:ChangePropertyAction  TargetObject="{x:Bind Blur}" PropertyName="Value" Value="1"/>
+                    </core:EventTriggerBehavior.Actions>
+                </core:EventTriggerBehavior>
+                <core:EventTriggerBehavior EventName="PointerExited">
+                    <core:EventTriggerBehavior.Actions>
+                        <core:ChangePropertyAction  TargetObject="{x:Bind Blur}"
+                                                    PropertyName="Value"
+                                                    Value="0" />
+                    </core:EventTriggerBehavior.Actions>
+                </core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Button>
+    </Grid>
+</UserControl>
