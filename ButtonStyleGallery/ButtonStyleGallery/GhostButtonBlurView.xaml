@@ -1,31 +1,47 @@
-﻿<UserControl
-    x:Class="ButtonStyleGallery.GhostButtonBlurView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ButtonStyleGallery"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+﻿<UserControl x:Class="ButtonStyleGallery.GhostButtonBlurView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:ButtonStyleGallery"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:behavior="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+             xmlns:behavior="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
              d:DesignHeight="300"
-    d:DesignWidth="400">
+             d:DesignWidth="400">
 
     <Grid>
         <Grid>
+            <Button Content="sssss" />
             <Interactivity:Interaction.Behaviors>
-                <behavior:Blur Duration="1000" Value="0" x:Name="Blur"/>
+                <behavior:Blur Duration="0"
+                               Value="0"
+                               x:Name="Blur"
+                               Delay="0"
+                               AutomaticallyStart="True" />
             </Interactivity:Interaction.Behaviors>
             <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup/>
+                <VisualStateGroup />
             </VisualStateManager.VisualStateGroups>
         </Grid>
-        <Button>
+        <ToggleButton HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      Content="ssss"
+                      Checked="ToggleButton_Checked"
+                      Unchecked="ToggleButton_Unchecked" />
+        <Button VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Content="sssssss">
             <Interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="PointerEntered" >
+                <core:EventTriggerBehavior EventName="PointerEntered">
                     <core:EventTriggerBehavior.Actions>
-                        <core:ChangePropertyAction  TargetObject="{x:Bind Blur}" PropertyName="Value" Value="1"/>
+                        <core:ChangePropertyAction  TargetObject="{x:Bind Blur}"
+                                                    PropertyName="Value"
+                                                    Value="1" />
+                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=text}"
+                                                    PropertyName="Text"
+                                                    Value="1" />
                     </core:EventTriggerBehavior.Actions>
                 </core:EventTriggerBehavior>
                 <core:EventTriggerBehavior EventName="PointerExited">
@@ -33,9 +49,40 @@
                         <core:ChangePropertyAction  TargetObject="{x:Bind Blur}"
                                                     PropertyName="Value"
                                                     Value="0" />
+                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=text}"
+                                                    PropertyName="Text"
+                                                    Value="0" />
                     </core:EventTriggerBehavior.Actions>
                 </core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>
+        <!--<Rectangle Fill="Red"
+                   Height="100"
+                   Width="100">
+            <Interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="PointerEntered">
+                    <core:EventTriggerBehavior.Actions>
+                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=Blur}"
+                                                    PropertyName="Value"
+                                                    Value="1" />
+                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=text}"
+                                                    PropertyName="Text"
+                                                    Value="1" />
+                    </core:EventTriggerBehavior.Actions>
+                </core:EventTriggerBehavior>
+                <core:EventTriggerBehavior EventName="PointerExited">
+                    <core:EventTriggerBehavior.Actions>
+                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=Blur}"
+                                                    PropertyName="Value"
+                                                    Value="0" />
+                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=text}"
+                                                    PropertyName="Text"
+                                                    Value="0" />
+                    </core:EventTriggerBehavior.Actions>
+                </core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Rectangle>-->
+        <TextBlock VerticalAlignment="Bottom"
+                   x:Name="text" />
     </Grid>
 </UserControl>

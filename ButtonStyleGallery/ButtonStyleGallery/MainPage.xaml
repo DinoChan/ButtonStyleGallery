@@ -13,84 +13,109 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel>
-            <StackPanel x:Name="ControlPanel">
-                <ComboBox Header="VisualState"
-                          Width="200"
-                          Margin="10"
-                          SelectionChanged="OnVisualStateSelectionChanged">
-                    <ComboBoxItem Content="Normal"
-                                  IsSelected="True" />
-                    <ComboBoxItem Content="PointerOver" />
-                    <ComboBoxItem Content="Pressed" />
-                    <ComboBoxItem Content="Disabled" />
-                </ComboBox>
-            </StackPanel>
-            <controls:AdaptiveGridView DesiredWidth="200"
-                                       ItemHeight="50"
-                                       IsItemClickEnabled="False"
-                                       SelectionMode="None"
-                                       RelativePanel.RightOf="ControlPanel"
-                                       x:Name="ButtonsPanel">
-                <Button Content="Edit Profile"
-                        Background="Transparent"
-                        BorderThickness="0" />
+        <Pivot>
+            <PivotItem Header="Basic">
+                <RelativePanel>
+                    <StackPanel x:Name="ControlPanel">
+                        <ListView Header="VisualState"
+                                  Width="200"
+                                  Margin="10"
+                                  SelectionChanged="OnVisualStateSelectionChanged">
+                            <ListViewItem Content="Normal"
+                                          IsSelected="True" />
+                            <ListViewItem Content="PointerOver" />
+                            <ListViewItem Content="Pressed" />
+                            <ListViewItem Content="Disabled" />
+                            
+                        </ListView>
+                        <!--<ComboBox Header="VisualState"
+                                  Width="200"
+                                  Margin="10"
+                                  SelectionChanged="OnVisualStateSelectionChanged">
+                            
+                        </ComboBox>-->
+                    </StackPanel>
+                    <controls:AdaptiveGridView DesiredWidth="200"
+                                               ItemHeight="50"
+                                               IsItemClickEnabled="False"
+                                               SelectionMode="None"
+                                               RelativePanel.RightOf="ControlPanel"
+                                               x:Name="ButtonsPanel">
+                        <Button Content="Edit Profile"
+                                Background="Transparent"
+                                BorderThickness="0" />
 
-                <Button Content="Edit Profile"
-                        Style="{StaticResource ShadowButtonStyle}" />
-                <Button Content="Edit Profile"
-                        Style="{StaticResource TransparentButtonStyle}" />
-                <Button Content="Edit Profile"
-                        Style="{StaticResource TransparentButtonStyle2}" />
-                <Button Foreground="#FFEBF412"
-                        Style="{StaticResource TransparentButtonStyle3}">
-                    <ContentControl.ContentTemplate>
-                        <DataTemplate>
-                            <Polygon Points="97.3,0 127.4,60.9 194.6,70.7 145.9,118.1 157.4,185.1 97.3,153.5 37.2,185.1 48.6,118.1 0,70.7 67.2,60.9"
-                                     Stroke="DarkGray"
-                                     StrokeThickness="1"
-                                     Fill="{Binding RelativeSource={RelativeSource  Mode=TemplatedParent},Path=Foreground}"
-                                     Stretch="Uniform" />
-                        </DataTemplate>
-                    </ContentControl.ContentTemplate>
-                </Button>
+                        <Button Content="Edit Profile"
+                                Style="{StaticResource ShadowButtonStyle}" />
+                        <Button Content="Edit Profile"
+                                Style="{StaticResource TransparentButtonStyle}" />
+                        <Button Content="Edit Profile"
+                                Style="{StaticResource TransparentButtonStyle2}" />
+                        <Button Foreground="#FFEBF412"
+                                Style="{StaticResource TransparentButtonStyle3}">
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <Polygon Points="97.3,0 127.4,60.9 194.6,70.7 145.9,118.1 157.4,185.1 97.3,153.5 37.2,185.1 48.6,118.1 0,70.7 67.2,60.9"
+                                             Stroke="DarkGray"
+                                             StrokeThickness="1"
+                                             Fill="{Binding RelativeSource={RelativeSource  Mode=TemplatedParent},Path=Foreground}"
+                                             Stretch="Uniform" />
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </Button>
 
-                <Button Foreground="#FF48F412"
-                        Style="{StaticResource TransparentButtonStyle4}">
-                    <ContentControl.ContentTemplate>
-                        <DataTemplate>
-                            <Polygon Points="110,58.2 147.3,0 192.1,29 141.7,105.1 118.7,139.8 88.8,185.1 46.1,156.5 0,125 23.5,86.6 71.1,116.7"
-                                     Stroke="DarkGray"
-                                     StrokeThickness="1"
-                                     Fill="{Binding RelativeSource={RelativeSource  Mode=TemplatedParent},Path=Foreground}"
-                                     Stretch="Uniform" />
-                        </DataTemplate>
-                    </ContentControl.ContentTemplate>
-                </Button>
+                        <Button Foreground="#FF48F412"
+                                Style="{StaticResource TransparentButtonStyle4}">
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <Polygon Points="110,58.2 147.3,0 192.1,29 141.7,105.1 118.7,139.8 88.8,185.1 46.1,156.5 0,125 23.5,86.6 71.1,116.7"
+                                             Stroke="DarkGray"
+                                             StrokeThickness="1"
+                                             Fill="{Binding RelativeSource={RelativeSource  Mode=TemplatedParent},Path=Foreground}"
+                                             Stretch="Uniform" />
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </Button>
 
-                <Button Foreground="#FFEBF412"
-                        Style="{StaticResource SaturationButtonStyle}">
-                    <ContentControl.ContentTemplate>
-                        <DataTemplate>
-                            <Polygon Points="97.3,0 127.4,60.9 194.6,70.7 145.9,118.1 157.4,185.1 97.3,153.5 37.2,185.1 48.6,118.1 0,70.7 67.2,60.9"
-                                     Stroke="DarkGray"
-                                     StrokeThickness="1"
-                                     Fill="{Binding RelativeSource={RelativeSource  Mode=TemplatedParent},Path=Foreground}"
-                                     Stretch="Uniform" />
-                        </DataTemplate>
-                    </ContentControl.ContentTemplate>
-                </Button>
-               
-                
-                <Button Content="Edit Profile"
-                        Style="{StaticResource PointLightButtonStyle}"
-                        BorderThickness="0"
-                        Background="Transparent" />
+                        <Button Foreground="#FFEBF412"
+                                Style="{StaticResource SaturationButtonStyle}">
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <Polygon Points="97.3,0 127.4,60.9 194.6,70.7 145.9,118.1 157.4,185.1 97.3,153.5 37.2,185.1 48.6,118.1 0,70.7 67.2,60.9"
+                                             Stroke="DarkGray"
+                                             StrokeThickness="1"
+                                             Fill="{Binding RelativeSource={RelativeSource  Mode=TemplatedParent},Path=Foreground}"
+                                             Stretch="Uniform" />
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </Button>
 
-               
-                <local:SimpleButton Content="Simple Button" />
-            </controls:AdaptiveGridView>
-            <!--<VariableSizedWrapGrid 
+
+                        <Button Content="Edit Profile"
+                                Style="{StaticResource PointLightButtonStyle}"
+                                BorderThickness="0"
+                                Background="Transparent" />
+
+                        <Grid Background="#FF535659">
+
+                            <Button Content="Edit Profile"
+                                    Foreground="#FFFF3366"
+                                    Style="{StaticResource GhostButtonStyle}"
+                                    HorizontalAlignment="Center" />
+
+                        </Grid>
+
+                        <Grid Background="#FF535659">
+
+                            <Button Content="Edit Profile"
+                                    Foreground="#FFFF3366"
+                                    Style="{StaticResource GhostButtonStyle2}"
+                                    HorizontalAlignment="Center" />
+
+                        </Grid>
+                        <local:SimpleButton Content="Simple Button" />
+                    </controls:AdaptiveGridView>
+                    <!--<VariableSizedWrapGrid 
                                    ItemHeight="300"
                                    ItemWidth="300">
                 <Rectangle Fill="Red" />
@@ -102,7 +127,13 @@
                            VariableSizedWrapGrid.RowSpan="2"
                            VariableSizedWrapGrid.ColumnSpan="2" />
             </VariableSizedWrapGrid>-->
-        </RelativePanel>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="Ghost Button">
+                <local:GhostButtonBlurView />
+            </PivotItem>
+        </Pivot>
+
 
 
 

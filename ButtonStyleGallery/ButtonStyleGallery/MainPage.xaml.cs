@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Toolkit.Uwp.UI;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -21,17 +22,17 @@ namespace ButtonStyleGallery
             if (ButtonsPanel == null)
                 return;
 
-            var comboBox = sender as ComboBox;
+            var listView = sender as ListView;
 
-            var selectedItem = comboBox?.SelectedItem as ComboBoxItem;
+            var selectedItem = listView?.SelectedItem as ListViewItem;
             if (selectedItem == null)
                 return;
 
             foreach (var item in ButtonsPanel.Items.OfType<Control>())
                 VisualStateManager.GoToState(item, selectedItem.Content as string, true);
-           
+
         }
 
-      
+
     }
 }
