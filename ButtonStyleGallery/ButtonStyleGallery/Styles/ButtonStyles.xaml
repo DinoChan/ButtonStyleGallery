@@ -631,7 +631,6 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
-
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>

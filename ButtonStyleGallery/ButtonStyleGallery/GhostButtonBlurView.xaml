@@ -8,81 +8,68 @@
              xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:behavior="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
-             d:DesignHeight="300"
-             d:DesignWidth="400">
+             xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+             d:DesignHeight="800"
+             d:DesignWidth="800">
 
     <Grid>
-        <Grid>
-            <Button Content="sssss" />
-            <Interactivity:Interaction.Behaviors>
-                <behavior:Blur Duration="0"
-                               Value="0"
-                               x:Name="Blur"
-                               Delay="0"
-                               AutomaticallyStart="True" />
-            </Interactivity:Interaction.Behaviors>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup />
-            </VisualStateManager.VisualStateGroups>
-        </Grid>
-        <ToggleButton HorizontalAlignment="Right"
-                      VerticalAlignment="Center"
-                      Content="ssss"
-                      Checked="ToggleButton_Checked"
-                      Unchecked="ToggleButton_Unchecked" />
-        <Button VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Content="sssssss">
-            <Interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="PointerEntered">
-                    <core:EventTriggerBehavior.Actions>
-                        <core:ChangePropertyAction  TargetObject="{x:Bind Blur}"
-                                                    PropertyName="Value"
-                                                    Value="1" />
-                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=text}"
-                                                    PropertyName="Text"
-                                                    Value="1" />
-                    </core:EventTriggerBehavior.Actions>
-                </core:EventTriggerBehavior>
-                <core:EventTriggerBehavior EventName="PointerExited">
-                    <core:EventTriggerBehavior.Actions>
-                        <core:ChangePropertyAction  TargetObject="{x:Bind Blur}"
-                                                    PropertyName="Value"
-                                                    Value="0" />
-                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=text}"
-                                                    PropertyName="Text"
-                                                    Value="0" />
-                    </core:EventTriggerBehavior.Actions>
-                </core:EventTriggerBehavior>
-            </Interactivity:Interaction.Behaviors>
-        </Button>
-        <!--<Rectangle Fill="Red"
-                   Height="100"
-                   Width="100">
-            <Interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="PointerEntered">
-                    <core:EventTriggerBehavior.Actions>
-                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=Blur}"
-                                                    PropertyName="Value"
-                                                    Value="1" />
-                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=text}"
-                                                    PropertyName="Text"
-                                                    Value="1" />
-                    </core:EventTriggerBehavior.Actions>
-                </core:EventTriggerBehavior>
-                <core:EventTriggerBehavior EventName="PointerExited">
-                    <core:EventTriggerBehavior.Actions>
-                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=Blur}"
-                                                    PropertyName="Value"
-                                                    Value="0" />
-                        <core:ChangePropertyAction  TargetObject="{Binding ElementName=text}"
-                                                    PropertyName="Text"
-                                                    Value="0" />
-                    </core:EventTriggerBehavior.Actions>
-                </core:EventTriggerBehavior>
-            </Interactivity:Interaction.Behaviors>
-        </Rectangle>-->
-        <TextBlock VerticalAlignment="Bottom"
-                   x:Name="text" />
+        <controls:AdaptiveGridView DesiredWidth="1000"
+                                   ItemHeight="500"
+                                   IsItemClickEnabled="False"
+                                   SelectionMode="None"
+                                   RelativePanel.RightOf="ControlPanel"
+                                   x:Name="ButtonsPanel">
+            <Grid>
+                <Grid>
+                    <Image Source="Assets/desktop.jpg"
+                           Stretch="UniformToFill" />
+                    <Interactivity:Interaction.Behaviors>
+                        <behavior:Blur Duration="300"
+                                       Value="0"
+                                       x:Name="Blur"
+                                       Delay="0"
+                                       AutomaticallyStart="True" />
+                    </Interactivity:Interaction.Behaviors>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup />
+                    </VisualStateManager.VisualStateGroups>
+                </Grid>
+
+                <StackPanel  Margin="50,50"
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Left">
+                    <Button Width="100"
+                            FontSize="18"
+                            Content="Login"
+                            Style="{StaticResource GhostButtonStyle}"
+                            Foreground="#FFEC283E">
+                        <Interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="PointerEntered">
+                                <core:EventTriggerBehavior.Actions>
+                                    <core:ChangePropertyAction  TargetObject="{x:Bind Blur}"
+                                                                PropertyName="Value"
+                                                                Value="3" />
+
+                                </core:EventTriggerBehavior.Actions>
+                            </core:EventTriggerBehavior>
+                            <core:EventTriggerBehavior EventName="PointerExited">
+                                <core:EventTriggerBehavior.Actions>
+                                    <core:ChangePropertyAction  TargetObject="{x:Bind Blur}"
+                                                                PropertyName="Value"
+                                                                Value="0" />
+
+                                </core:EventTriggerBehavior.Actions>
+                            </core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </Button>
+                    <TextBlock Text="Login,and enjoy your trip."
+                               Foreground="White"
+                               Margin="0,10,0,0"
+                               FontSize="18" />
+                </StackPanel>
+            </Grid>
+        </controls:AdaptiveGridView>
+
+
     </Grid>
 </UserControl>
