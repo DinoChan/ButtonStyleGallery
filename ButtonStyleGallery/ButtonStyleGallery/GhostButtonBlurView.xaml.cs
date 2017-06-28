@@ -24,14 +24,6 @@ namespace ButtonStyleGallery
             this.InitializeComponent();
         }
 
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-            Blur.Value = 1;
-        }
-
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Blur.Value = 0;
-        }
+       
     }
 }
