@@ -117,4 +117,20 @@
         </Setter>
     </Style>
 
+    <Style TargetType="local:CommonStatesIndicator">
+        <Setter Property="Padding"
+                Value="8,4,8,4" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CommonStatesIndicator">
+                    <ContentPresenter   Content="{TemplateBinding Content}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}"
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
