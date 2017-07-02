@@ -20,7 +20,8 @@
                         <ListView Header="VisualState"
                                   Width="200"
                                   Margin="10"
-                                  SelectionChanged="OnVisualStateSelectionChanged">
+                                  SelectionChanged="OnVisualStateSelectionChanged"
+                                  x:Name="VisualStateSelector">
                             <ListViewItem Content="Normal"
                                           IsSelected="True" />
                             <ListViewItem Content="PointerOver" />
@@ -28,6 +29,8 @@
                             <ListViewItem Content="Disabled" />
 
                         </ListView>
+                        <Button Content="ChangeState"
+                                Click="OnChangeState" />
                         <!--<ComboBox Header="VisualState"
                                   Width="200"
                                   Margin="10"
@@ -35,12 +38,13 @@
                             
                         </ComboBox>-->
                     </StackPanel>
-                    <controls:AdaptiveGridView DesiredWidth="200"
-                                               ItemHeight="50"
+                    <controls:AdaptiveGridView DesiredWidth="350"
+                                               ItemHeight="60"
                                                IsItemClickEnabled="False"
                                                SelectionMode="None"
                                                RelativePanel.RightOf="ControlPanel"
                                                x:Name="ButtonsPanel">
+                        <Button Content="Button" />
                         <StackPanel Orientation="Horizontal">
 
                             <Button Content="Edit Profile"
@@ -54,20 +58,20 @@
                             <Button x:Name="Button2"
                                     Content="Edit Profile"
                                     Style="{StaticResource ShadowButtonStyle}" />
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button2}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="Button3"
                                     Content="Edit Profile"
                                     Style="{StaticResource TransparentButtonStyle}" />
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button3}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="Button4"
                                     Content="Edit Profile"
                                     Style="{StaticResource TransparentButtonStyle2}" />
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button4}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="Button5"
@@ -83,7 +87,7 @@
                                     </DataTemplate>
                                 </ContentControl.ContentTemplate>
                             </Button>
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button5}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="Button6"
@@ -99,7 +103,7 @@
                                     </DataTemplate>
                                 </ContentControl.ContentTemplate>
                             </Button>
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button6}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="Button7"
@@ -115,7 +119,7 @@
                                     </DataTemplate>
                                 </ContentControl.ContentTemplate>
                             </Button>
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button7}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
 
@@ -124,37 +128,49 @@
                                     Style="{StaticResource PointLightButtonStyle}"
                                     BorderThickness="0"
                                     Background="Transparent" />
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button8}" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal">
-                            <Grid  Background="#FF535659">
+                        <StackPanel Orientation="Horizontal"
+                                    Background="#FF535659"
+                                    Padding="10">
 
-                                <Button x:Name="Button9"
-                                        Content="Edit Profile"
-                                        Foreground="#FFFF3366"
-                                        Style="{StaticResource GhostButtonStyle}"
-                                        HorizontalAlignment="Center" />
+                            <Button x:Name="Button9"
+                                    Content="Edit Profile"
+                                    Foreground="#FFFF3366"
+                                    Style="{StaticResource GhostButtonStyle}"
+                                    HorizontalAlignment="Center" />
 
-                            </Grid>
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+
+                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button9}"
+                                                         Foreground="#FFD6C1FF" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid Background="#FF535659">
+                        <StackPanel Orientation="Horizontal"
+                                    Background="#FF535659"
+                                    Padding="10">
 
-                                <Button x:Name="Button10"
-                                        Content="Edit Profile"
-                                        Foreground="#FFFF3366"
-                                        Style="{StaticResource GhostButtonStyle2}"
-                                        HorizontalAlignment="Center" />
 
-                            </Grid>
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+                            <Button x:Name="Button10"
+                                    Content="Edit Profile"
+                                    Foreground="#FFFF3366"
+                                    Style="{StaticResource GhostButtonStyle2}"
+                                    HorizontalAlignment="Center" />
+
+
+                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button10}"
+                                                         Foreground="#FFD6C1FF" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <local:SimpleButton Content="Simple Button" />
-                            <local:CommonStatesIndicator AttachedElement="{x:Bind Button1}" />
+
                         </StackPanel>
+                        <Grid>
+                            <Rectangle Fill="Transparent"
+                                       ToolTipService.ToolTip="权限不足"
+                                       ToolTipService.Placement="Right" />
+                            <Button IsEnabled="False"
+                                    Content="Edit Profile" />
+                        </Grid>
                     </controls:AdaptiveGridView>
                     <!--<VariableSizedWrapGrid 
                                    ItemHeight="300"

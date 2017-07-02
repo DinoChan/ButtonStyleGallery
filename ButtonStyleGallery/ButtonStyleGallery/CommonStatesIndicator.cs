@@ -6,6 +6,11 @@ namespace ButtonStyleGallery
 {
     public class CommonStatesIndicator : ContentControl
     {
+        public CommonStatesIndicator()
+        {
+            DefaultStyleKey = typeof(CommonStatesIndicator);
+        }
+
         /// <summary>
         ///     标识 AttachedElement 依赖属性。
         /// </summary>
@@ -35,10 +40,43 @@ namespace ButtonStyleGallery
             if (newValue == null)
                 return;
 
-            var group = VisualStateManager.GetVisualStateGroups(newValue).FirstOrDefault(g => g.Name == "CommonStates");
+            var rootElement = AttachedElement.GetVisualDescendants().OfType<FrameworkElement>().FirstOrDefault();
+            if (rootElement == null)
+            {
+                newValue.SizeChanged += OnAttachedElementSizeChanged;
+                return;
+            }
+
+            var group = VisualStateManager.GetVisualStateGroups(rootElement).FirstOrDefault(g => g.Name == "CommonStates");
+            if (group == null)
+            {
+                newValue.SizeChanged += OnAttachedElementSizeChanged;
+                return;
+            }
+
             group.CurrentStateChanged += (s, e) =>
             {
                 Content = e.NewState.Name;
+            };
+
+            if (group.CurrentState != null)
+                Content = group.CurrentState.Name;
+        }
+
+        private void OnAttachedElementSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            AttachedElement.SizeChanged -= OnAttachedElementSizeChanged;
+            var rootElement = AttachedElement.GetVisualDescendants().OfType<FrameworkElement>().FirstOrDefault();
+            if (rootElement == null)
+                return;
+
+            var group = VisualStateManager.GetVisualStateGroups(rootElement).FirstOrDefault(g => g.Name == "CommonStates");
+             if (group == null)
+                return;
+
+            group.CurrentStateChanged += (s, args) =>
+            {
+                Content = args.NewState.Name;
             };
 
             if (group.CurrentState != null)

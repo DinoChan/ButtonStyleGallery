@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -28,6 +29,18 @@ namespace ButtonStyleGallery
 
             foreach (var item in ButtonsPanel.GetVisualDescendants().OfType<Button>())
                 VisualStateManager.GoToState(item, selectedItem.Content as string, true);
+        }
+
+        private async void OnChangeState(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(2000);
+            VisualStateSelector.SelectedIndex = 1;
+            await Task.Delay(2000);
+            VisualStateSelector.SelectedIndex = 2;
+            await Task.Delay(2000);
+            VisualStateSelector.SelectedIndex = 1;
+            await Task.Delay(2000);
+            VisualStateSelector.SelectedIndex = 0;
         }
     }
 }
